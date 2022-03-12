@@ -184,14 +184,16 @@ class Session extends SessionArray
         {
             $realSessionPath = $this->generatePathToSessionFile($oldObject->getSessionKey());
 
+            // remove file
             if(unlink($realSessionPath)) {
 
                 $this->logger->info("Successfully deleted file with location: {$realSessionPath}", [$config]);
             } else {
 
-                throw new \RuntimeException("Couldn't remove session file: " . $realSessionPath);
+                throw new \RuntimeException("Couldn't remove session file: " . $realSessionPath . " file may have been deleted accidentally  ");
             }
 
+            // remove session instance
             if($this->repository->remove([
                     "WHERE" => "session_key = '{$oldObject->getSessionKey()}'"
             ])) {

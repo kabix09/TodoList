@@ -44,8 +44,6 @@ final class Counter
 
     public static function checkCounter(): bool
     {
-        var_dump("cur: " . self::$item);
-        var_dump("max: " . self::$maxValue);
         if(self::$item < self::$maxValue) {
             return TRUE;
         }
