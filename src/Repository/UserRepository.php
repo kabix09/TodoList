@@ -1,7 +1,7 @@
 <?php
 namespace App\Repository;
 use ConnectionFactory\Connection;
-use App\Connection\QueryBuilder;
+use App\Service\Connection\QueryBuilder;
 use App\Entity\Mapper\UserMapper;
 use App\Entity\User;
 
@@ -23,14 +23,14 @@ final class UserRepository extends BaseRepository
     public function insert($base): bool
     {
         return parent::insert(
-            $this->entityFactory::entityToArray($base)
+            $this->entityFactory::convertEntityToArray($base)
         );
     }
 
     public function update($base, array $criteria = array()): bool
     {
         return parent::update(
-            $this->entityFactory::entityToArray($base),
+            $this->entityFactory::convertEntityToArray($base),
             $criteria
         );
     }

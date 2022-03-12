@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use ConnectionFactory\Connection;
-use App\Connection\QueryBuilder;
+use App\Service\Connection\QueryBuilder;
 use App\Entity\Mapper\SessionMapper;
 use App\Entity\Session;
 
@@ -24,14 +24,14 @@ class SessionRepository extends BaseRepository
     public function insert($base): bool
     {
         return parent::insert(
-            $this->entityFactory::entityToArray($base)
+            $this->entityFactory::convertEntityToArray($base)
         );
     }
 
     public function update($base, array $criteria = array()): bool
     {
         return parent::update(
-            $this->entityFactory::entityToArray($base),
+            $this->entityFactory::convertEntityToArray($base),
             $criteria
         );
     }
@@ -108,6 +108,12 @@ class SessionRepository extends BaseRepository
             return $this->entityFactory->createEntityCollection($result);
         else
             return NULL;
+    }
+
+    //--------------------------------------------------------------
+    public function fetchCurrentSession(): ?Session
+    {
+
     }
 
 }

@@ -1,10 +1,10 @@
 <?php
-require_once '../init.php';
+require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'init.php';
 
-define("LINK", '%s://%s:%s/scripts/activateAccount.php?email=%s&nick=%s&key=%s');
+define("LINK", '%s://%s:%s/public/scripts/user/activateAccount.php?email=%s&nick=%s&key=%s');
 define("HREF", '<a href="%s">%s</a>');
 
-$session = new \App\Session\Session();
+$session = new \App\Service\Session\Session();
 $href = sprintf(LINK,
             $_SERVER['REQUEST_SCHEME'],
             $_SERVER['SERVER_NAME'],
